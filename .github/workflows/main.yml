@@ -12,8 +12,9 @@ jobs:
           distribution: 'temurin'
       - name: Build with Gradle
         run: |
-          chmod +x gradlew
-          ./gradlew build
+          gradle build
+        env:
+          GRADLE_USER_HOME: ${{ github.workspace }}/.gradle
       - name: Upload Jar
         uses: actions/upload-artifact@v3
         with:
