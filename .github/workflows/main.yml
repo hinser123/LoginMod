@@ -1,21 +1,21 @@
-姓名: 生成mod Jar
-在……之上: [推]
-工作:
-建立:
-连续的: Ubuntu-最新
-步骤:
-      - uses: 操作/签出@v3
-      - 姓名: 设置JDK17
-uses: 操作/设置-Java@v3
-和……一起:
-java版: '17'
-分布: 'temurin'
-      - 姓名: 使用渐变生成
-跑: |
-chmod+x gradlew
-./gradlew构建
-      - 姓名: 上传JAR
-uses: 操作/上载工件@v3
-和……一起:
-姓名: Mod-Jar
-路径: build/libs/*.jar
+name: Build Mod Jar
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Build with Gradle
+        run: |
+          chmod +x gradlew
+          ./gradlew build
+      - name: Upload Jar
+        uses: actions/upload-artifact@v3
+        with:
+          name: Mod-Jar
+          path: build/libs/*.jar
