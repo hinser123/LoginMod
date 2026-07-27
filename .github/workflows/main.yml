@@ -1,0 +1,21 @@
+姓名: 生成mod Jar
+在……之上: [推]
+工作:
+建立:
+连续的: Ubuntu-最新
+步骤:
+      - uses: 操作/签出@v3
+      - 姓名: 设置JDK17
+uses: 操作/设置-Java@v3
+和……一起:
+java版: '17'
+分布: 'temurin'
+      - 姓名: 使用渐变生成
+跑: |
+chmod+x gradlew
+./gradlew构建
+      - 姓名: 上传JAR
+uses: 操作/上载工件@v3
+和……一起:
+姓名: Mod-Jar
+路径: build/libs/*.jar
